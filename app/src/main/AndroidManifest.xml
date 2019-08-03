@@ -3,6 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.ucsdextandroid2.android2final">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"

@@ -9,42 +9,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.navigation.Navigation;
 
-public class DifficultyFragment extends Fragment {
+public class CategoryFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_difficulty, container, false);
+        return inflater.inflate(R.layout.fragment_category, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.buttonHard).setOnClickListener(new View.OnClickListener() {
+        CategoryFragmentArgs args = CategoryFragmentArgs.fromBundle(getArguments());
+        String difficulty = args.getGameDifficulty();
+
+        view.findViewById(R.id.buttonComputers).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCategory("hard");
+                goToQuiz(18, difficulty);
             }
         });
 
-        view.findViewById(R.id.buttonMedium).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.buttonManga).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCategory("medium");
+                goToQuiz(31, difficulty);
             }
         });
 
-        view.findViewById(R.id.buttonEasy).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.buttonGeneral).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCategory("easy");
+                goToQuiz(9, difficulty);
             }
         });
+
     }
-
-    public void goToCategory(String difficulty){
+    public void goToQuiz(Integer category, String difficulty){
         Navigation.findNavController(getView())
-                .navigate(DifficultyFragmentDirections.actionDifficultyFragmentToCategoryFragment(difficulty));
+                .navigate(CategoryFragmentDirections.actionCategoryFragmentToQuizFragment(difficulty, category));
     }
+
 }

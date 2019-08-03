@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/difficultyFragment">
+
+    <fragment android:id="@+id/difficultyFragment" android:name="com.ucsdextandroid2.android2final.DifficultyFragment"
+              android:label="fragment_difficulty" tools:layout="@layout/fragment_difficulty">
+        <action android:id="@+id/action_difficultyFragment_to_categoryFragment" app:destination="@id/categoryFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/categoryFragment" android:name="com.ucsdextandroid2.android2final.CategoryFragment"
+              android:label="fragment_category" tools:layout="@layout/fragment_category">
+        <action android:id="@+id/action_categoryFragment_to_quizFragment" app:destination="@id/quizFragment"/>
+        <argument android:name="gameDifficulty" app:argType="string"/>
+    </fragment>
+
+    <fragment android:id="@+id/quizFragment" android:name="com.ucsdextandroid2.android2final.FragmentQuiz"
+              android:label="fragment_activity_quiz" tools:layout="@layout/fragment_activity_quiz">
+        <action android:id="@+id/action_quizFragment_to_gameResultsFragment" app:destination="@id/gameResultsFragment"/>
+        <argument android:name="gameDifficulty" app:argType="string"/>
+        <argument android:name="gameCategory" app:argType="integer"/>
+    </fragment>
+
+    <fragment android:id="@+id/gameResultsFragment" android:name="com.ucsdextandroid2.android2final.GameResultsFragment"
+              android:label="fragment_game_list" tools:layout="@layout/fragment_game_list">
+        <argument android:name="score" app:argType="float"/>
+        <argument android:name="difficulty" app:argType="string"/>
+        <argument android:name="category" app:argType="integer"/>
+    </fragment>
+
+</navigation>
